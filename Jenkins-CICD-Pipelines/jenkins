@@ -5,24 +5,27 @@ stage('Git CheckOut') {
 git branch: 'main', url: 'https://github.com/amitvashisttech/devops-accenture-2020Oct12.git'
 }
 
+def project_path = "02-Jenkins/petclinic-code"
+dir(project_path) {
 
 stage('Maven Clean') {    
-sh 'mvn clean -f 02-Jenkins/petclinic-code/pom.xml'
+sh 'mvn clean '
 }
 
 stage('Maven Compiling') {    
-sh 'mvn compile -f 02-Jenkins/petclinic-code/pom.xml'
+sh 'mvn compile '
 }
 
 stage('Maven Testing') {    
-sh 'mvn test -f 02-Jenkins/petclinic-code/pom.xml'
+sh 'mvn test '
 }
 
 stage('Maven Packaging ') {    
-sh 'mvn package -f 02-Jenkins/petclinic-code/pom.xml'
+sh 'mvn package '
 }
 
 stage('Archiving Artifacts') {    
-archive '02-Jenkins/petclinic-code/target/*.war'
+archive 'target/*.war'
+}
 }
 }
